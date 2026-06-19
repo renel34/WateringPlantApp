@@ -1,4 +1,4 @@
-# 🌱 Remote Plant Watering System
+# Remote Plant Watering System
 
 A full-stack IoT application that lets you monitor soil moisture, dispense water remotely, and watch your plant grow — all from a web browser, powered by a Raspberry Pi 5.
 
@@ -11,7 +11,7 @@ A full-stack IoT application that lets you monitor soil moisture, dispense water
 
 ---
 
-## 📋 Description
+## Description
 
 The Remote Plant Watering System is a web-controlled IoT device that automates and monitors plant care. A capacitive soil moisture sensor reports real-time hydration levels, a peristaltic pump dispenses precise amounts of water on demand, and a live camera feed lets you watch it happen — all accessible from any device on the network through a responsive React interface.
 
@@ -19,7 +19,7 @@ The system enforces per-plant daily watering limits, tracks historical watering 
 
 ---
 
-## 🔭 Overview
+## Overview
 
 This project bridges hardware and software: a Raspberry Pi 5 reads sensor data and drives a pump through GPIO, while a Flask REST API exposes that hardware to a React front end over the network. Every watering event is logged to a PostgreSQL database, broken down by plant type, so the system can prevent overwatering and display weekly trends per plant.
 
@@ -27,20 +27,20 @@ The frontend and backend are fully decoupled — the React app communicates with
 
 ---
 
-## ✨ Features
+## Features
 
-- 🌡️ **Live soil moisture readings** updated continuously from a capacitive sensor
-- 💧 **On-demand watering** with an adjustable slider for precise ml control
-- 🌿 **Plant-type aware daily limits** — each plant type (succulent, herb, leafy vegetable, flowering, tropical, woody, general) has its own daily watering cap, enforced independently
-- 📊 **Live progress animation** — the dispensed-water counter and progress bar animate in real time while the pump runs, not just after it finishes
-- 📅 **Weekly watering history chart**, filtered per plant type
-- 📷 **Live camera feed** of the plant and mechanism, synced to the Raspberry Pi's actual clock
-- 🚫 **Daily limit protection** — the system blocks watering once a plant's daily allowance is reached, with clear in-app messaging
-- 📱 **Fully responsive design** — works cleanly from mobile to desktop
+- **Live soil moisture readings** updated continuously from a capacitive sensor
+- **On-demand watering** with an adjustable slider for precise ml control
+- **Plant-type aware daily limits** — each plant type (succulent, herb, leafy vegetable, flowering, tropical, woody, general) has its own daily watering cap, enforced independently
+- **Live progress animation** — the dispensed-water counter and progress bar animate in real time while the pump runs, not just after it finishes
+- **Weekly watering history chart**, filtered per plant type
+- **Live camera feed** of the plant and mechanism, synced to the Raspberry Pi's actual clock
+- **Daily limit protection** — the system blocks watering once a plant's daily allowance is reached, with clear in-app messaging
+- **Fully responsive design** — works cleanly from mobile to desktop
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 **Frontend**
 
@@ -76,7 +76,7 @@ The frontend and backend are fully decoupled — the React app communicates with
 
 ---
 
-## 🎯 Skills Demonstrated
+## Skills Demonstrated
 
 - Full-stack web development (React + Flask REST API)
 - Hardware-software interfacing: GPIO control, PWM signal generation, I²C communication
@@ -90,7 +90,7 @@ The frontend and backend are fully decoupled — the React app communicates with
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐         HTTP/REST          ┌──────────────────────┐
@@ -116,7 +116,7 @@ All processes (`plant` Flask API, `plant-camera` go2rtc) run under PM2 alongside
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 remote-plant-watering-system/
@@ -146,7 +146,7 @@ remote-plant-watering-system/
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### Prerequisites
 
@@ -211,7 +211,7 @@ Serve the resulting `dist/` folder with Nginx (see `nginx.conf` example in `/doc
 
 ---
 
-## 🗄️ Database
+## Database
 
 PostgreSQL database: `plantdb`
 
@@ -231,7 +231,7 @@ Each watering event is recorded individually, tagged with its `plant_type`, allo
 
 ---
 
-## 🔌 API Integration
+## API Integration
 
 The Flask backend exposes a small REST API consumed entirely by the React frontend.
 
@@ -252,7 +252,7 @@ GET http://<pi-ip>:8080/api/stream.mjpeg?src=plant
 
 ---
 
-## 🔍 How It Works
+## How It Works
 
 1. The React app polls `/api/status` every 10 seconds to keep moisture and dispensed totals current, filtered to whichever plant is currently selected.
 2. Selecting a plant type triggers fresh fetches of that plant's remaining daily allowance, dispensed total, and weekly history — each plant tracks independently.
@@ -264,7 +264,7 @@ GET http://<pi-ip>:8080/api/stream.mjpeg?src=plant
 
 ---
 
-## 🧩 Challenges Solved
+## Challenges Solved
 
 - **Raspberry Pi 5 GPIO compatibility** — early versions of `RPi.GPIO` couldn't address the Pi 5's new RP1 chip ("Cannot determine SOC peripheral base address"). Resolved by ensuring the system-installed `RPi.GPIO` 0.7.2 took precedence over an outdated user-installed copy.
 - **MOSFET logic-level mismatch** — the original IRF520 module required ~5V on the gate to fully switch, but the Pi 5 only outputs 3.3V, leaving the pump under-powered. Solved by swapping the IRF520 for a true logic-level IRLZ44N MOSFET.
@@ -276,7 +276,7 @@ GET http://<pi-ip>:8080/api/stream.mjpeg?src=plant
 
 ---
 
-## 📚 What I Learned
+## What I Learned
 
 - How to safely interface a Raspberry Pi's GPIO with real-world electronics, including the importance of logic-level compatibility between microcontrollers and MOSFETs
 - Practical calibration techniques for translating PWM duty cycle into physical, real-world units (ml)
@@ -288,13 +288,13 @@ GET http://<pi-ip>:8080/api/stream.mjpeg?src=plant
 
 ---
 
-## 👤 Author
+## Author
 
 **René Laplante**
 Full-stack developer & IoT enthusiast
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
