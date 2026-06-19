@@ -93,23 +93,23 @@ The frontend and backend are fully decoupled — the React app communicates with
 ## Architecture
 
 ```
-┌─────────────────┐         HTTP/REST          ┌──────────────────────┐
-│   React Web App   │ ◄─────────────────────────► │   Flask API (3004)   │
-│  (Nginx, port 3006)│                            │   on Raspberry Pi 5   │
-└─────────────────┘                              └──────────┬───────────┘
-                                                              │
-                              ┌───────────────────────────────┼───────────────────────┐
-                              │                                │                       │
-                      ┌───────▼────────┐            ┌──────────▼─────────┐   ┌─────────▼─────────┐
-                      │  ADS1115 ADC    │            │  IRLZ44N MOSFET     │   │   PostgreSQL        │
-                      │  + Moisture     │            │  + Peristaltic Pump │   │   (plantdb)          │
-                      │  Sensor (I²C)   │            │  (PWM via GPIO 18)  │   │   watering_history   │
-                      └─────────────────┘            └─────────────────────┘   └─────────────────────┘
+┌─────────────────────┐         HTTP/REST           ┌──────────────────────┐
+│   React Web App     │ ◄─────────────────────────► │   Flask API (3004)   │
+│  (Nginx, port 3006) │                             │   on Raspberry Pi 5  │
+└─────────────────────┘                             └──────────┬───────────┘
+                                                               │
+                               ┌───────────────────────────────┼───────────────────────┐
+                               │                               │                       │
+                      ┌────────▼────────┐          ┌───────────▼─────────┐   ┌─────────▼──────────┐
+                      │  ADS1115 ADC    │          │  IRLZ44N MOSFET     │   │   PostgreSQL       │
+                      │  + Moisture     │          │  + Peristaltic Pump │   │   (plantdb)        │
+                      │  Sensor (I²C)   │          │  (PWM via GPIO 18)  │   │   watering_history │
+                      └─────────────────┘          └─────────────────────┘   └────────────────────┘
 
-┌─────────────────────┐        MJPEG stream       ┌──────────────────────┐
-│   React Camera Card   │ ◄───────────────────────── │   go2rtc (port 8080)  │
-└─────────────────────┘                            │   + Camera Module V2   │
-                                                    └──────────────────────┘
+┌───────────────────────┐        MJPEG stream        ┌──────────────────────┐
+│   React Camera Card   │ ◄───────────────────────── │   go2rtc (port 8080) │
+└───────────────────────┘                            │   + Camera Module V2 │
+                                                     └──────────────────────┘
 ```
 
 All processes (`plant` Flask API, `plant-camera` go2rtc) run under PM2 alongside the rest of the Pi's hosted applications, with Nginx serving the built React app as static files.
