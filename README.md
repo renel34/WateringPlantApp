@@ -1,7 +1,3 @@
-Chat
-Test
-
-Looking a my code in this watering plant app, I need to generate a readme file to upload to github. Based on what you are seeing in this code, could you generate that readme file for me?
 Remote Plant Watering System
 A React-based web application for remotely monitoring and controlling an automated plant watering system powered by a Raspberry Pi.
 Features
