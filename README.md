@@ -131,7 +131,7 @@ remote-plant-watering-system/
 │   │   │   ├── WeeklyHistoryChart.jsx
 │   │   │   └── plantSettings.js     # Per-plant daily limits & metadata
 │   │   └── main.jsx
-│   ├── .env                         # VITE_PI_BASE_URL, VITE_CAMERA_URL
+│   ├── .env                         # VITE_PI_BASE_URL, VITE_CAMERA_URL (not committed)
 │   ├── vite.config.js               # Dev proxy to Pi API
 │   └── package.json
 │
